@@ -9,7 +9,7 @@ This bot is written in Python using Selenium.
 
 The original code was failing and no longer maintained. This was forked for the purpose of patching and sharing with new features added.
 
-By Michael Dingess
+By [Michael Dingess](https://github.com/madingess)
 
 ## Setup & Startup
 
