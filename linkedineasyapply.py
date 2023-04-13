@@ -37,7 +37,6 @@ class LinkedinEasyApply:
         self.eeo = parameters.get('eeo', [])
         self.experience_default = self.experience['default']
 
-
     def login(self):
         try:
             self.browser.get("https://www.linkedin.com/login")
@@ -62,8 +61,9 @@ class LinkedinEasyApply:
         random.shuffle(searches)
 
         page_sleep = 0
-        minimum_time = 60*15
-        minimum_page_time = time.time() + minimum_time
+        minimum_time = 15
+    #    minimum_page_time = time.time() + minimum_time
+        minimum_page_time = 0
 
         for (position, location) in searches:
             location_url = "&location=" + location
@@ -82,36 +82,36 @@ class LinkedinEasyApply:
                     self.apply_jobs(location)
                     print("Applying to jobs on this page has been completed!")
 
-                    time_left = minimum_page_time - time.time()
-                    if time_left > 0:
-                        print("Sleeping for " + str(time_left) + " seconds.")
-                        time.sleep(time_left)
-                        minimum_page_time = time.time() + minimum_time
-                    if page_sleep % 5 == 0:
-                        sleep_time = random.randint(500, 900)
-                        print("Sleeping for " + str(sleep_time/60) + " minutes.")
-                        time.sleep(sleep_time)
-                        page_sleep += 1
+                    # time_left = minimum_page_time - time.time()
+                    # if time_left > 0:
+                    #     print("Sleeping for " + str(time_left) + " seconds.")
+                    #     time.sleep(time_left)
+                    #     minimum_page_time = time.time() + minimum_time
+                    # if page_sleep % 5 == 0:
+                    #     sleep_time = random.randint(500, 900)
+                    #     print("Sleeping for " + str(sleep_time / 60) + " minutes.")
+                    #     time.sleep(sleep_time)
+                    #     page_sleep += 1
             except:
                 traceback.print_exc()
                 pass
 
-            time_left = minimum_page_time - time.time()
-            if time_left > 0:
-                print("Sleeping for " + str(time_left) + " seconds.")
-                time.sleep(time_left)
-                minimum_page_time = time.time() + minimum_time
-            if page_sleep % 5 == 0:
-                sleep_time = random.randint(500, 900)
-                print("Sleeping for " + str(sleep_time/60) + " minutes.")
-                time.sleep(sleep_time)
-                page_sleep += 1
-
+            # time_left = minimum_page_time - time.time()
+            # if time_left > 0:
+            #     print("Sleeping for " + str(time_left) + " seconds.")
+            #     time.sleep(time_left)
+            #     minimum_page_time = time.time() + minimum_time
+            # if page_sleep % 5 == 0:
+            #     sleep_time = random.randint(500, 900)
+            #     print("Sleeping for " + str(sleep_time / 60) + " minutes.")
+            #     time.sleep(sleep_time)
+            #     page_sleep += 1
 
     def apply_jobs(self, location):
         no_jobs_text = ""
         try:
-            no_jobs_element = self.browser.find_element(By.CLASS_NAME, 'jobs-search-two-pane__no-results-banner--expand')
+            no_jobs_element = self.browser.find_element(By.CLASS_NAME,
+                                                        'jobs-search-two-pane__no-results-banner--expand')
             no_jobs_text = no_jobs_element.text
         except:
             pass
@@ -126,7 +126,8 @@ class LinkedinEasyApply:
             self.scroll_slow(job_results)
             self.scroll_slow(job_results, step=300, reverse=True)
 
-            job_list = self.browser.find_elements(By.CLASS_NAME, 'scaffold-layout__list-container')[0].find_elements(By.CLASS_NAME, 'jobs-search-results__list-item')
+            job_list = self.browser.find_elements(By.CLASS_NAME, 'scaffold-layout__list-container')[0].find_elements(
+                By.CLASS_NAME, 'jobs-search-results__list-item')
             if len(job_list) == 0:
                 raise Exception("No job class elements found in page")
         except:
@@ -182,7 +183,6 @@ class LinkedinEasyApply:
 
                     time.sleep(random.uniform(3, 5))
 
-
                     try:
                         done_applying = self.apply_to_job()
                         if done_applying:
@@ -203,7 +203,8 @@ class LinkedinEasyApply:
                     try:
                         self.write_to_file(company, job_title, link, job_location, location)
                     except Exception:
-                        print("Could not write the job to the file! No special characters in the job title/company is allowed!")
+                        print(
+                            "Could not write the job to the file! No special characters in the job title/company is allowed!")
                         traceback.print_exc()
                 except:
                     traceback.print_exc()
@@ -306,7 +307,7 @@ class LinkedinEasyApply:
             return 'no'
 
     def additional_questions(self):
-        #pdb.set_trace()
+        # pdb.set_trace()
         frm_el = self.browser.find_elements(By.CLASS_NAME, 'jobs-easy-apply-form-section__grouping')
         if len(frm_el) > 0:
             for el in frm_el:
@@ -375,7 +376,7 @@ class LinkedinEasyApply:
                         i += 1
 
                     if to_select is None:
-                        to_select = radios[len(radios)-1]
+                        to_select = radios[len(radios) - 1]
 
                     self.radio_select(to_select, answer, len(radios) > 2)
 
@@ -665,7 +666,8 @@ class LinkedinEasyApply:
 
     def unfollow(self):
         try:
-            follow_checkbox = self.browser.find_element(By.XPATH, "//label[contains(.,\'to stay up to date with their page.\')]").click()
+            follow_checkbox = self.browser.find_element(By.XPATH,
+                                                        "//label[contains(.,\'to stay up to date with their page.\')]").click()
             follow_checkbox.click()
         except:
             pass
@@ -678,7 +680,8 @@ class LinkedinEasyApply:
                 if len(input_buttons) == 0:
                     raise Exception("No input elements found in element")
                 for upload_button in input_buttons:
-                    upload_type = upload_button.find_element(By.XPATH, "..").find_element(By.XPATH, "preceding-sibling::*")
+                    upload_type = upload_button.find_element(By.XPATH, "..").find_element(By.XPATH,
+                                                                                          "preceding-sibling::*")
                     if 'resume' in upload_type.text.lower():
                         upload_button.send_keys(self.resume_dir)
                     elif 'cover' in upload_type.text.lower():
@@ -689,7 +692,6 @@ class LinkedinEasyApply:
         except:
             print("Failed to upload resume or cover letter!")
             pass
-
 
     def enter_text(self, element, text):
         element.clear()
@@ -717,13 +719,16 @@ class LinkedinEasyApply:
                     continue
                 elif 'phone number' in text:
                     try:
-                        country_code_picker = el.find_element(By.XPATH, '//select[contains(@id,"phoneNumber")][contains(@id,"country")]')
+                        country_code_picker = el.find_element(By.XPATH,
+                                                              '//select[contains(@id,"phoneNumber")][contains(@id,"country")]')
                         self.select_dropdown(country_code_picker, self.personal_info['Phone Country Code'])
                     except Exception as e:
-                        print("Country code " + self.personal_info['Phone Country Code'] + " not found! Make sure it is exact.")
+                        print("Country code " + self.personal_info[
+                            'Phone Country Code'] + " not found! Make sure it is exact.")
                         print(e)
                     try:
-                        phone_number_field = el.find_element(By.XPATH, '//input[contains(@id,"phoneNumber")][contains(@id,"nationalNumber")]')
+                        phone_number_field = el.find_element(By.XPATH,
+                                                             '//input[contains(@id,"phoneNumber")][contains(@id,"nationalNumber")]')
                         self.enter_text(phone_number_field, self.personal_info['Mobile Phone Number'])
                     except Exception as e:
                         print("Could not input phone number:")
@@ -761,7 +766,7 @@ class LinkedinEasyApply:
 
     def write_to_file(self, company, job_title, link, location, search_location):
         to_write = [company, job_title, link, location]
-        #file_path = self.output_file_directory + self.file_name + search_location + ".csv"
+        # file_path = self.output_file_directory + self.file_name + search_location + ".csv"
         file_path = self.file_name + search_location + ".csv"
 
         with open(file_path, 'a') as f:
@@ -777,7 +782,8 @@ class LinkedinEasyApply:
                 writer = csv.writer(f)
                 writer.writerow(to_write)
         except:
-            print("Could not write the unprepared question to the file! No special characters in the question is allowed: ")
+            print(
+                "Could not write the unprepared question to the file! No special characters in the question is allowed: ")
             print(question_text)
 
     def scroll_slow(self, scrollable_element, start=0, end=3600, step=100, reverse=False):
@@ -832,13 +838,13 @@ class LinkedinEasyApply:
         easy_apply_url = "&f_LF=f_AL"
 
         extra_search_terms = [distance_url, remote_url, job_types_url, experience_url]
-        extra_search_terms_str = '&'.join(term for term in extra_search_terms if len(term) > 0) + easy_apply_url + date_url
+        extra_search_terms_str = '&'.join(
+            term for term in extra_search_terms if len(term) > 0) + easy_apply_url + date_url
 
         return extra_search_terms_str
 
     def next_job_page(self, position, location, job_page):
         self.browser.get("https://www.linkedin.com/jobs/search/" + self.base_search_url +
-                         "&keywords=" + position + location + "&start=" + str(job_page*25))
+                         "&keywords=" + position + location + "&start=" + str(job_page * 25))
 
         self.avoid_lock()
-

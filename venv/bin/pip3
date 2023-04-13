@@ -1,4 +1,6 @@
-#!/home/michael/Documents/Applications/EasyApplyBot/EasyApplyBot/venv/bin/python
+#!/bin/sh
+'''exec' "/Users/dream/Desktop/Desktop - Dr.’s iMac/my profile/EasyApplyBot/venv/bin/python3.11" "$0" "$@"
+' '''
 # -*- coding: utf-8 -*-
 import re
 import sys

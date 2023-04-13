@@ -25,7 +25,7 @@ jobTypes:
 date:
  all time: False
  month: False
- week: True
+ week: False
  24 hours: True
 
 positions:
@@ -33,10 +33,14 @@ positions:
  - Developer
  - Backend
  - Frontend
+ - Software Intern
+ - Software Internship
  - Intern
  - Internship
  - Java
- - C++
+ - CPP
+ - Spring
+ - Spring Boot
  - Python
  - Freshers
  - Graduates
@@ -51,7 +55,12 @@ locations:
 # - Remote
 # - Hybrid
 # - On-site
- - Worldwide
+# - Worldwide
+ - India
+# - India
+# - Asia
+# - United States
+# - Europe
 distance: 1000
 
 outputFileDirectory: /Users/dream/Desktop/EasyApplyBot/
@@ -61,15 +70,48 @@ companyBlacklist:
  #- company2
 
 titleBlacklist:
+ - Senior
+ - Principle
+ - HR
+ - Human Resource Intern
+ - Human Resources Intern
+ - Human Resources Internship
+ - Story
+ - Principal Software Engineer
+ - Senior Principal Engineer
+ - Laravel Engineer
+ - Senior Software Engineer
+ - Software Architecture
+ - Sales and Marketing Intern
+ - Sales and marketing Internship
+ - Lead
+ - Project
  #- word1
  #- word2
 
 posterBlacklist:
+ - Senior
+ - Principle
+ - HR
+ - Human Resource
+ - Story
+ - Principal
+ - Project
+ - Human Resource Intern
+ - Human Resources Intern
+ - Human Resources Internship
+ - Sales and Marketing Intern
+ - Sales and marketing Internship
+ - Principal Software Engineer
+ - Senior Principal Engineer
+ - Laravel Engineer
+ - Senior Software Engineer
+ - Software Architecture
  #- name1
  #- name2
 
 uploads:
-  resume: /Users/dream/Desktop/EasyApplyBot/
+  resume: C:\Users\kumar\Downloads\EasyApplyBot-main\EasyApplyBot-main\resume.pdf
  # Cover letter is optional
 #  coverLetter: jetbrains://pycharm/navigate/reference?project=EasyApplyBot&path=resume.pdf
 
