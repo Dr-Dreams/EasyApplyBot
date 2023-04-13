@@ -2,3 +2,7 @@ __pycache__/**
 .idea/**
 .csv/**
 .pdf/**
+._.DS_Store
+._.gitignore
+._.csv/**
+._unprepared_questions.csv
