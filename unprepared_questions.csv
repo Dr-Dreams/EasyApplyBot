@@ -4906,3 +4906,7 @@ text,how many months have you worked in business development?
 dropdown,are you comfortable working 40 hours per week?
 dropdown,are you comfortable to work in a dynamic and fast-pasted environment?
 dropdown,i acknowledge that this is an unpaid internship for 3 months
+dropdown,have you completed the following level of education: bachelor's degree?
+dropdown,are you open to visit colleges and universities if required by college management for meetings
+dropdown,are you open for target oriented (incentive based) payout without any fixed salary for first 2 months
+text,expected ctc with incentive

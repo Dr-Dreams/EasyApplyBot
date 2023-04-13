@@ -1,5 +1,5 @@
-email: kumarmousam86@gmail.com
-password: Mausam@#2023
+email: email@gmail.com
+password: password
 
 disableAntiLock: False
 
@@ -56,8 +56,6 @@ locations:
 # - Hybrid
 # - On-site
 # - Worldwide
- - India
-# - India
 # - Asia
 # - United States
 # - Europe
@@ -111,9 +109,9 @@ posterBlacklist:
  #- name2
 
 uploads:
-  resume: C:\Users\kumar\Downloads\EasyApplyBot-main\EasyApplyBot-main\resume.pdf
+  resume: "path of resume "
  # Cover letter is optional
-#  coverLetter: jetbrains://pycharm/navigate/reference?project=EasyApplyBot&path=resume.pdf
+#  coverLetter: "path of coverLetter if you have it else ignore it"
 
 
 # ------------ QA section -------------------
@@ -151,7 +149,7 @@ checkboxes:
  backgroundCheck: True
 
 # ------------ Additional parameters: universityGpa ---------------
-universityGpa: 7.65
+universityGpa: 10
 
 # ------------ Additional parameters: salaryMinimum ---------------
 salaryMinimum: 0
@@ -204,15 +202,15 @@ experience:
 
 # ------------ Additional parameters: personal info ---------------
 personalInfo:
- First Name: Mausam
- Last Name: Kumar
- Phone Country Code: India (+91) # See linkedin for your country code, must be exact according to the international platform, i.e. Italy (+39) not Italia (+39)
- Mobile Phone Number: 8839177334
- Street address: Indore
- City: Indore # Include the state/province as well!
- State: Madhya Pradesh
- Zip: 452001
- Linkedin: https://www.linkedin.com/in/mausam14
+ First Name: John
+ Last Name: Doe
+ Phone Country Code: US (+1) # See linkedin for your country code, must be exact according to the international platform, i.e. Italy (+39) not Italia (+39)
+ Mobile Phone Number: 123434343
+ Street address: address
+ City: City name # Include the state/province as well!
+ State: State name
+ Zip: 239823 #enter the pin/zip code
+ Linkedin: https://www.linkedin.com/in/profile
  Website: https://www.github.com/Dr-Dreams # github/website is interchangeable here
 
 # ------------ Additional parameters: USA employment crap ---------------
