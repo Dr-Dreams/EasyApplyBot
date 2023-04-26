@@ -22,6 +22,37 @@ jobTypes:
  other: False
  volunteer: False
 
+Industry:
+  Human Resources Services: False
+  Staffing and Recruiting: False
+  Technology, Information and Internet: True
+  Software Development: True
+  Computer Hardware Manufacturing: False
+  Banking: False
+  Insurance: False
+  Computer and Network Security: True
+  Retail: False
+  Investment Management: False
+  Financial Services: False
+  Wireless Services: False
+  Semiconductor Manufacturing: False
+  IT Services and IT Consulting: False
+  Telecommunications: False
+
+Job_function:
+  Research: True
+  Quality Assurance: False
+  Sales: False
+  Consulting: True
+  Engineering: True
+  Information Technology: True
+  Business Development: False
+  Management: False
+  Art/Creative: False
+  Other: True
+  Design: False
+  Project Management: False
+
 date:
  all time: False
  month: False

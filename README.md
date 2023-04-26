@@ -22,8 +22,8 @@ python3 main.py
 Next, you need to fill out the config.yaml file. Most of this is self-explanatory but if you need explanations please see the end of this README.
 
 ```yaml
-email: email@domain.com
-password: yourpassword
+email: email@gmail.com
+password: password
 
 disableAntiLock: False
 
@@ -31,29 +31,74 @@ remote: True
 
 experienceLevel:
  internship: False
- entry: True
+ entry: False
  associate: False
  mid-senior level: False
  director: False
  executive: False
 
 jobTypes:
- full-time: True
- contract: True
+ full-time: False
+ contract: False
  part-time: False
- temporary: True
+ temporary: False
  internship: False
  other: False
  volunteer: False
 
+Industry:
+  Human Resources Services: False
+  Staffing and Recruiting: False
+  Technology, Information and Internet: True
+  Software Development: True
+  Computer Hardware Manufacturing: False
+  Banking: False
+  Insurance: False
+  Computer and Network Security: True
+  Retail: False
+  Investment Management: False
+  Financial Services: False
+  Wireless Services: False
+  Semiconductor Manufacturing: False
+  IT Services and IT Consulting: False
+  Telecommunications: False
+
+Job_function:
+  Research: True
+  Quality Assurance: False
+  Sales: False
+  Consulting: True
+  Engineering: True
+  Information Technology: True
+  Business Development: False
+  Management: False
+  Art/Creative: False
+  Other: True
+  Design: False
+  Project Management: False
+
 date:
- all time: True
+ all time: False
  month: False
  week: False
- 24 hours: False
+ 24 hours: True
 
 positions:
- #- First position
+ - Software Developer
+ - Developer
+ - Backend
+ - Frontend
+ - Software Intern
+ - Software Internship
+ - Intern
+ - Internship
+ - Java
+ - CPP
+ - Spring
+ - Spring Boot
+ - Python
+ - Freshers
+ - Graduates
  #- A second position
  #- A third position
  #- ...
@@ -62,27 +107,66 @@ locations:
  #- A second location
  #- A third location
  #- ...
- - Remote
-distance: 25
+# - Remote
+# - Hybrid
+# - On-site
+# - Worldwide
+# - Asia
+# - United States
+# - Europe
+distance: 1000
 
-outputFileDirectory: ~/Documents/Applications/EasyApplyBot/EasyApplyBot/
+outputFileDirectory: /Users/dream/Desktop/EasyApplyBot/
 
 companyBlacklist:
  #- company
  #- company2
 
 titleBlacklist:
+ - Senior
+ - Principle
+ - HR
+ - Human Resource Intern
+ - Human Resources Intern
+ - Human Resources Internship
+ - Story
+ - Principal Software Engineer
+ - Senior Principal Engineer
+ - Laravel Engineer
+ - Senior Software Engineer
+ - Software Architecture
+ - Sales and Marketing Intern
+ - Sales and marketing Internship
+ - Lead
+ - Project
  #- word1
  #- word2
 
 posterBlacklist:
+ - Senior
+ - Principle
+ - HR
+ - Human Resource
+ - Story
+ - Principal
+ - Project
+ - Human Resource Intern
+ - Human Resources Intern
+ - Human Resources Internship
+ - Sales and Marketing Intern
+ - Sales and marketing Internship
+ - Principal Software Engineer
+ - Senior Principal Engineer
+ - Laravel Engineer
+ - Senior Software Engineer
+ - Software Architecture
  #- name1
  #- name2
 
 uploads:
- resume: C:\Users\myDirectory\Resume.pdf
+  resume: "path of resume "
  # Cover letter is optional
- #coverLetter: C:\Users\myDirectory\CoverLettter.pdf
+#  coverLetter: "path of coverLetter if you have it else ignore it"
 
 
 # ------------ QA section -------------------
@@ -111,7 +195,7 @@ checkboxes:
   - High School Diploma
   - Bachelor's Degree
   # - Associate's Degree
-  - Master's Degree
+#  - Master's Degree
   # - Master of Business Administration
   # - Doctor of Philosophy
   # - Doctor of Medicine
@@ -120,14 +204,14 @@ checkboxes:
  backgroundCheck: True
 
 # ------------ Additional parameters: universityGpa ---------------
-universityGpa: 4.0
+universityGpa: 10
 
 # ------------ Additional parameters: salaryMinimum ---------------
-salaryMinimum: 106000
+salaryMinimum: 0
 
 # ------------ Additional parameters: languages ---------------
 languages:
- english: Native or bilingual # None, Conversational, Professional, Native or bilingual
+ english: Native or bilingual  # None, Conversational, Professional, Native or bilingual
 
 # ------------ Additional parameters: years of experience ---------------
 # How many years of work experience do you have ...? (whole numbers only)
@@ -170,28 +254,29 @@ experience:
  #selenium: 0
  # default to put for any industry/skill that you did not list
  default: 0
- 
+
 # ------------ Additional parameters: personal info ---------------
 personalInfo:
- First Name: FirstName
- Last Name: LastName
- Phone Country Code: Canada (+1) # See linkedin for your country code, must be exact
- Mobile Phone Number: 1234567890
- Street address: 123 Fake Street
- City: Red Deer, Alberta # Include the state/province as well!
- State: YourState
- Zip: YourZip/Postal
- Linkedin: https://www.linkedin.com/in/my-linkedin-profile
- Website: https://www.my-website.com # github/website is interchangeable here
+ First Name: John
+ Last Name: Doe
+ Phone Country Code: US (+1) # See linkedin for your country code, must be exact according to the international platform, i.e. Italy (+39) not Italia (+39)
+ Mobile Phone Number: 123434343
+ Street address: address
+ City: City name # Include the state/province as well!
+ State: State name
+ Zip: 239823 #enter the pin/zip code
+ Linkedin: https://www.linkedin.com/in/profile
+ Website: https://www.github.com/Dr-Dreams # github/website is interchangeable here
 
 # ------------ Additional parameters: USA employment crap ---------------
 eeo:
- gender: None
- race: None
- vetran: None
- disability: None
- citizenship: yes
- clearance: no
+ gender: Male
+ race: Asian
+ vetran: No
+ disability: No
+ citizenship: Yes
+ clearance: No
+
 ```
 
 
@@ -241,7 +326,42 @@ jobTypes:
  other: False
  volunteer: False
 ```
+This is for what type of Industry you are looking for. You must choose at least one.
+```yaml
+Industry:
+  Human Resources Services: False
+  Staffing and Recruiting: False
+  Technology, Information and Internet: True
+  Software Development: True
+  Computer Hardware Manufacturing: False
+  Banking: False
+  Insurance: False
+  Computer and Network Security: True
+  Retail: False
+  Investment Management: False
+  Financial Services: False
+  Wireless Services: False
+  Semiconductor Manufacturing: False
+  IT Services and IT Consulting: False
+  Telecommunications: False
+```
 
+This is for what type of job function you are looking for.
+```yaml
+Job_function:
+  Research: True
+  Quality Assurance: False
+  Sales: False
+  Consulting: True
+  Engineering: True
+  Information Technology: True
+  Business Development: False
+  Management: False
+  Art/Creative: False
+  Other: True
+  Design: False
+  Project Management: False
+```
 How far back you want to search. You must choose only one.
 ```yaml
 date:

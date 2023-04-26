@@ -2,23 +2,30 @@ import yaml
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from linkedineasyapply import LinkedinEasyApply
 from validate_email import validate_email
+from webdriver_manager.chrome import ChromeDriverManager
+import os
+import pyautogui
+from linkedineasyapply import LinkedinEasyApply
+
 
 def init_browser():
     browser_options = Options()
     options = ['--disable-blink-features', '--no-sandbox', '--start-maximized', '--disable-extensions',
-               '--ignore-certificate-errors', '--disable-blink-features=AutomationControlled', '--remote-debugging-port=9222']
+               '--ignore-certificate-errors', '--disable-blink-features=AutomationControlled',
+               '--remote-debugging-port=9222']
 
     for option in options:
         browser_options.add_argument(option)
-
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=browser_options)
     driver.get("https://www.google.com")
-    driver.set_window_position(0, 0)
-    driver.maximize_window()
+    screen_width, screen_height = pyautogui.size()
+    screen_width = screen_width/4
+    screen_height = 1
 
+    driver.set_window_position(screen_width, screen_height)
+    # driver.set_window_position(0, 0)
+    # driver.maximize_window()
     return driver
 
 
@@ -113,7 +120,17 @@ def validate_yaml():
     return parameters
 
 
+def del_file_before_executing(fname):
+    
+    if os.path.exists(fname):
+        os.remove(fname)
+        print(f"The file {fname} has been deleted.")
+    else:
+        print(f"The file {fname} does not exist.")
+
+
 if __name__ == '__main__':
+    # del_file_before_executing("outputIndia.csv")
     parameters = validate_yaml()
     browser = init_browser()
 
@@ -121,7 +138,3 @@ if __name__ == '__main__':
     bot.login()
     bot.security_check()
     bot.start_applying()
-
-
-
-
