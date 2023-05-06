@@ -811,7 +811,6 @@ class LinkedinEasyApply:
                             self.additional_questions()
                         except:
                             pass
-
                         try:
                             self.send_resume()
                         except:

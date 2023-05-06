@@ -61,20 +61,6 @@ date:
 
 positions:
  - Software Developer
- - Developer
- - Backend
- - Frontend
- - Software Intern
- - Software Internship
- - Intern
- - Internship
- - Java
- - CPP
- - Spring
- - Spring Boot
- - Python
- - Freshers
- - Graduates
  #- A second position
  #- A third position
  #- ...
@@ -95,22 +81,13 @@ distance: 1000
 outputFileDirectory: /Users/dream/Desktop/EasyApplyBot/
 
 companyBlacklist:
+  - AMD
+  - Google Inc
+  - Facebook
  #- company
  #- company2
 
 titleBlacklist:
- - Senior
- - Principle
- - HR
- - Human Resource Intern
- - Human Resources Intern
- - Human Resources Internship
- - Story
- - Principal Software Engineer
- - Senior Principal Engineer
- - Laravel Engineer
- - Senior Software Engineer
- - Software Architecture
  - Sales and Marketing Intern
  - Sales and marketing Internship
  - Lead
@@ -126,15 +103,6 @@ posterBlacklist:
  - Story
  - Principal
  - Project
- - Human Resource Intern
- - Human Resources Intern
- - Human Resources Internship
- - Sales and Marketing Intern
- - Sales and marketing Internship
- - Principal Software Engineer
- - Senior Principal Engineer
- - Laravel Engineer
- - Senior Software Engineer
  - Software Architecture
  #- name1
  #- name2
