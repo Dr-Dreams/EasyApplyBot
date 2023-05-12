@@ -11,11 +11,22 @@ The original code was failing and no longer maintained. This was forked for the 
 
 Special Thanks to [Michael Dingess](https://github.com/madingess)
 
-## Setup & Startup
+## Setup & Startup for Mac OS X and Linux
+
+Before starting the bot, make sure you have edit the config.yml file.
+
+To run the bot, open the command line in the cloned repository directory. Go to the repository directory. Open the terminal and run this commands.
+```bash
+bash start.sh or sudo bash start.sh
+```
+
+## Setup & Startup for Windows
+
+Before starting the bot, make sure you have edit the config.yml file.
 
 To run the bot, open the command line in the cloned repository directory. Activate the virtual environment and start the bot using these commands:
 ```bash
-source venv/bin/activate
+./venv/Scripts/activate
 python3 main.py
 ```
 

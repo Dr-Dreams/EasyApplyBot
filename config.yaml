@@ -6,21 +6,21 @@ disableAntiLock: False
 remote: True
 
 experienceLevel:
- internship: False
- entry: False
- associate: False
- mid-senior level: False
- director: False
- executive: False
+  internship: False
+  entry: False
+  associate: False
+  mid-senior level: False
+  director: False
+  executive: False
 
 jobTypes:
- full-time: False
- contract: False
- part-time: False
- temporary: False
- internship: False
- other: False
- volunteer: False
+  full-time: False
+  contract: False
+  part-time: False
+  temporary: False
+  internship: False
+  other: False
+  volunteer: False
 
 Industry:
   Human Resources Services: False
@@ -54,21 +54,26 @@ Job_function:
   Project Management: False
 
 date:
- all time: False
- month: False
- week: False
- 24 hours: True
+  all time: False
+  month: False
+  week: False
+  24 hours: True
 
 positions:
- - Software Developer
- #- A second position
- #- A third position
- #- ...
+  - Software Developer
+  - Java Developer
+  - Python Developer
+  #- A second position
+  #- A third position
+  #- ...
 locations:
- #- First location
- #- A second location
- #- A third location
- #- ...
+  - India
+  - Japan
+  - Remote
+  #- First location
+  #- A second location
+  #- A third location
+  #- ...
 # - Remote
 # - Hybrid
 # - On-site
@@ -76,7 +81,7 @@ locations:
 # - Asia
 # - United States
 # - Europe
-distance: 1000
+distance: 100
 
 outputFileDirectory: /Users/dream/Desktop/EasyApplyBot/
 
@@ -84,68 +89,67 @@ companyBlacklist:
   - AMD
   - Google Inc
   - Facebook
- #- company
- #- company2
+  #- company
+  #- company2
 
 titleBlacklist:
- - Sales and Marketing Intern
- - Sales and marketing Internship
- - Lead
- - Project
- #- word1
- #- word2
+  - Sales and Marketing Intern
+  - Sales and marketing Internship
+  - Lead
+  - Project
+  #- word1
+  #- word2
 
 posterBlacklist:
- - Senior
- - Principle
- - HR
- - Human Resource
- - Story
- - Principal
- - Project
- - Software Architecture
- #- name1
- #- name2
+  - Senior
+  - Principle
+  - HR
+  - Human Resource
+  - Story
+  - Principal
+  - Project
+  - Software Architecture
+  #- name1
+  #- name2
 
 uploads:
   resume: "path of resume "
- # Cover letter is optional
+  # Cover letter is optional
 #  coverLetter: "path of coverLetter if you have it else ignore it"
-
 
 # ------------ QA section -------------------
 
 # ------------ Additional parameters: checkboxes ---------------
 checkboxes:
- # Do you have a valid driver's license? (yes/no checkbox)
- driversLicence: True
- # Will you now, or in the future, require sponsorship for employment visa status (e.g. H-1B visa status)? (yes/no checkbox)
- # This is relative to the location and your citizenship applying above, and same with legallyAuthorized.
- requireVisa: False
- # Are you legally authorized to work in COUNTRY? (yes/no checkbox)
- legallyAuthorized: True
- # We must fill this position urgently. Can you start immediately? (yes/no checkbox)
- urgentFill: True
- # Are you comfortable commuting to this job's location? (yes/no checkbox)
- commute: False
- # Are you comfortable working in a remote environment? (yes/no checkbox)
- remote: True
- # Are you comfortable taking a drug in accordance with local/state laws? (yes/no checkbox)
- drugTest: True
- # Are you willing to complete an assessment? (yes/no checkbox)
- assessment: True
- # Have you completed the following level of education: DEGREE TYPE? (yes/no checkbox)
- degreeCompleted:
-  - High School Diploma
-  - Bachelor's Degree
-  # - Associate's Degree
-#  - Master's Degree
+  # Do you have a valid driver's license? (yes/no checkbox)
+  driversLicence: True
+  # Will you now, or in the future, require sponsorship for employment visa status (e.g. H-1B visa status)? (yes/no checkbox)
+  # This is relative to the location and your citizenship applying above, and same with legallyAuthorized.
+  requireVisa: False
+  # Are you legally authorized to work in COUNTRY? (yes/no checkbox)
+  legallyAuthorized: True
+  # We must fill this position urgently. Can you start immediately? (yes/no checkbox)
+  urgentFill: True
+  # Are you comfortable commuting to this job's location? (yes/no checkbox)
+  commute: False
+  # Are you comfortable working in a remote environment? (yes/no checkbox)
+  remote: True
+  # Are you comfortable taking a drug in accordance with local/state laws? (yes/no checkbox)
+  drugTest: True
+  # Are you willing to complete an assessment? (yes/no checkbox)
+  assessment: True
+  # Have you completed the following level of education: DEGREE TYPE? (yes/no checkbox)
+  degreeCompleted:
+    - High School Diploma
+    - Bachelor's Degree
+    # - Associate's Degree
+  #  - Master's Degree
   # - Master of Business Administration
   # - Doctor of Philosophy
   # - Doctor of Medicine
   # - Doctor of Law
- # Are you willing to undergo a background check, in accordance with local law/regulations?
- backgroundCheck: True
+  # Are you willing to undergo a background check, in accordance with local law/regulations?
+  backgroundCheck: True
 
 # ------------ Additional parameters: universityGpa ---------------
 universityGpa: 10
@@ -155,68 +159,68 @@ salaryMinimum: 0
 
 # ------------ Additional parameters: languages ---------------
 languages:
- english: Native or bilingual  # None, Conversational, Professional, Native or bilingual
+  english: Native or bilingual # None, Conversational, Professional, Native or bilingual
 
 # ------------ Additional parameters: years of experience ---------------
 # How many years of work experience do you have ...? (whole numbers only)
 experience:
- # normal ones
- Accounting/Auditing: 0
- Administrative : 0
- Advertising : 0
- Analyst : 0
- Art/Creative: 0
- Business Development: 0
- Consulting: 0
- Customer Service: 0
- Distribution Design: 0
- Education: 0
- Engineering: 0
- Finance: 0
- General Business: 0
- Health Care Provider: 0
- Human Resources: 0
- Information Technology: 0
- Legal: 0
- Management: 0
- Manufacturing: 0
- Marketing: 0
- Public Relations: 0
- Purchasing: 0
- Product Management: 0
- Project Management: 0
- Production: 0
- Quality Assurance: 0
- Research: 0
- Sales: 0
- Science: 0
- Strategy/Planning: 0
- Supply Chain: 0
- Training: 0
- Writing/Editing: 0
- #python: 0
- #selenium: 0
- # default to put for any industry/skill that you did not list
- default: 0
+  # normal ones
+  Accounting/Auditing: 0
+  Administrative: 0
+  Advertising: 0
+  Analyst: 0
+  Art/Creative: 0
+  Business Development: 0
+  Consulting: 0
+  Customer Service: 0
+  Distribution Design: 0
+  Education: 0
+  Engineering: 0
+  Finance: 0
+  General Business: 0
+  Health Care Provider: 0
+  Human Resources: 0
+  Information Technology: 0
+  Legal: 0
+  Management: 0
+  Manufacturing: 0
+  Marketing: 0
+  Public Relations: 0
+  Purchasing: 0
+  Product Management: 0
+  Project Management: 0
+  Production: 0
+  Quality Assurance: 0
+  Research: 0
+  Sales: 0
+  Science: 0
+  Strategy/Planning: 0
+  Supply Chain: 0
+  Training: 0
+  Writing/Editing: 0
+  #python: 0
+  #selenium: 0
+  # default to put for any industry/skill that you did not list
+  default: 0
 
 # ------------ Additional parameters: personal info ---------------
 personalInfo:
- First Name: John
- Last Name: Doe
- Phone Country Code: US (+1) # See linkedin for your country code, must be exact according to the international platform, i.e. Italy (+39) not Italia (+39)
- Mobile Phone Number: 123434343
- Street address: address
- City: City name # Include the state/province as well!
- State: State name
- Zip: 239823 #enter the pin/zip code
- Linkedin: https://www.linkedin.com/in/profile
- Website: https://www.github.com/Dr-Dreams # github/website is interchangeable here
+  First Name: John
+  Last Name: Doe
+  Phone Country Code: US (+1) # See linkedin for your country code, must be exact according to the international platform, i.e. Italy (+39) not Italia (+39)
+  Mobile Phone Number: 123434343
+  Street address: address
+  City: City name # Include the state/province as well!
+  State: State name
+  Zip: 239823 #enter the pin/zip code
+  Linkedin: https://www.linkedin.com/in/profile
+  Website: https://www.github.com/Dr-Dreams # github/website is interchangeable here
 
 # ------------ Additional parameters: USA employment crap ---------------
 eeo:
- gender: Male
- race: Asian
- vetran: No
- disability: No
- citizenship: yes
- clearance: no
+  gender: Male
+  race: Asian
+  vetran: No
+  disability: No
+  citizenship: yes
+  clearance: no

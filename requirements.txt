@@ -1,5 +1,5 @@
-selenium
 pyautogui
-webdriver_manager
 PyYAML
+selenium
 validate_email
+webdriver_manager

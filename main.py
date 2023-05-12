@@ -20,7 +20,7 @@ def init_browser():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=browser_options)
     driver.get("https://www.google.com")
     screen_width, screen_height = pyautogui.size()
-    screen_width = screen_width/4
+    screen_width = screen_width / 4
     screen_height = 1
 
     driver.set_window_position(screen_width, screen_height)
@@ -121,7 +121,6 @@ def validate_yaml():
 
 
 def del_file_before_executing(fname):
-    
     if os.path.exists(fname):
         os.remove(fname)
         print(f"The file {fname} has been deleted.")

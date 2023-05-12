@@ -71,8 +71,8 @@ class LinkedinEasyApply:
         minimum_time = 15
         #    minimum_page_time = time.time() + minimum_time
         minimum_page_time = 0
-
         for (position, location) in searches:
+            print(position, location)
             location_url = "&location=" + location
             job_page_number = -1
 
@@ -101,19 +101,20 @@ class LinkedinEasyApply:
                     #     time.sleep(sleep_time)
                     #     page_sleep += 1
             except Exception as ex:
-                print(ex)
+                # print(ex)
+                self.exceptionHandler(ex)
                 pass
 
-            # time_left = minimum_page_time - time.time()
-            # if time_left > 0:
-            #     print("Sleeping for " + str(time_left) + " seconds.")
-            #     time.sleep(time_left)
-            #     minimum_page_time = time.time() + minimum_time
-            # if page_sleep % 5 == 0:
-            #     sleep_time = random.randint(500, 900)
-            #     print("Sleeping for " + str(sleep_time / 60) + " minutes.")
-            #     time.sleep(sleep_time)
-            #     page_sleep += 1
+                # time_left = minimum_page_time - time.time()
+                # if time_left > 0:
+                #     print("Sleeping for " + str(time_left) + " seconds.")
+                #     time.sleep(time_left)
+                #     minimum_page_time = time.time() + minimum_time
+                # if page_sleep % 5 == 0:
+                #     sleep_time = random.randint(500, 900)
+                #     print("Sleeping for " + str(sleep_time / 60) + " minutes.")
+                #     time.sleep(sleep_time)
+                #     page_sleep += 1
 
     def apply_jobs(self, location):
         no_jobs_text = ""
@@ -225,10 +226,12 @@ class LinkedinEasyApply:
                     except Exception as ex:
                         print(
                             "Could not write the job to the file! No special characters in the job title/company is allowed!")
+                        self.exceptionHandler(ex)
 
                 except Exception as ex:
                     print("Could not apply to the job!")
                     # traceback.print_exc()
+                    self.exceptionHandler(ex)
                     pass
             else:
                 print("Job contains blacklisted keyword or company or poster name!")
@@ -785,6 +788,7 @@ class LinkedinEasyApply:
                     except Exception as e:
                         print("Country code " + self.personal_info[
                             'Phone Country Code'] + " not found! Make sure it is exact.")
+                        self.exceptionHandler(e)
                         # print(e)
                     try:
                         phone_number_field = el.find_element(By.XPATH,
@@ -793,6 +797,7 @@ class LinkedinEasyApply:
                             phone_number_field, self.personal_info['Mobile Phone Number'])
                     except Exception as e:
                         print("Could not input phone number:")
+                        self.exceptionHandler(e)
                         # print(e)
 
     def fill_up(self):
@@ -811,6 +816,7 @@ class LinkedinEasyApply:
                             self.additional_questions()
                         except:
                             pass
+
                         try:
                             self.send_resume()
                         except:
@@ -956,3 +962,8 @@ class LinkedinEasyApply:
                          "&keywords=" + position + location + "&start=" + str(job_page * 25))
 
         self.avoid_lock()
+
+    def exceptionHandler(self, ex):
+
+        with open("exceptionHandler.log", 'w') as f:
+            f.write(str(ex) + "\n")
