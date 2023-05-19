@@ -83,6 +83,8 @@ class LinkedinEasyApply:
                 while True:
                     page_sleep += 1
                     job_page_number += 1
+                    if job_page_number >= 40:
+                        break
                     print("Going to job page " + str(job_page_number + 1))
                     self.next_job_page(position, location_url, job_page_number)
                     time.sleep(random.uniform(1.5, 3.5))

@@ -1,4 +1,8 @@
-#!/bin/bash
+#! /bin/bash
+
+
+echo "$(dirname "$0")"
+cd "$(dirname "$0")"
 if command -v python3 &>/dev/null; then
     echo "Python3 is already installed"
 else
@@ -7,12 +11,7 @@ fi
 
 # Update pip
 
-if pip3 list --outdated | grep -Fqx pip; then
-    echo "pip upgrade available. Upgrading now..."
-    pip3 install --upgrade pip
-else
-    echo "pip is up to date"
-fi
+pip install --upgrade pip >/dev/null 2>&1
 
 # Check if virtual environment exists
 
@@ -35,7 +34,7 @@ else
     pip3 install -r requirements.txt
 fi
 
-
 sleep 5
+clear
 # Run main.py
 python3 main.py

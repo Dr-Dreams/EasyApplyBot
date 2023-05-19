@@ -11,13 +11,13 @@ The original code was failing and no longer maintained. This was forked for the 
 
 Special Thanks to [Michael Dingess](https://github.com/madingess)
 
-## Setup & Startup for Mac OS X and Linux
+## Setup & Startup for Mac OS X
 
 Before starting the bot, make sure you have edit the config.yml file.
 
 To run the bot, open the command line in the cloned repository directory. Go to the repository directory. Open the terminal and run this commands.
 ```bash
-bash start.sh or sudo bash start.sh
+run start.command
 ```
 
 ## Setup & Startup for Windows
