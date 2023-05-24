@@ -1,11 +1,13 @@
+import os
+
+import pyautogui
 import yaml
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from validate_email import validate_email
 from webdriver_manager.chrome import ChromeDriverManager
-import os
-import pyautogui
+
 from linkedineasyapply import LinkedinEasyApply
 
 
@@ -120,16 +122,20 @@ def validate_yaml():
     return parameters
 
 
-def del_file_before_executing(fname):
-    if os.path.exists(fname):
-        os.remove(fname)
-        print(f"The file {fname} has been deleted.")
-    else:
-        print(f"The file {fname} does not exist.")
+def remove_csv_files():
+    current_dir = os.getcwd()  # Get the current directory
+
+    # Iterate over all files in the current directory
+    for file in os.listdir(current_dir):
+        if file.startswith("unprepared_"):
+            continue
+        elif file.endswith(".csv"):  # Check if the file is a CSV file
+            file_path = os.path.join(current_dir, file)  # Get the full path of the file
+            os.remove(file_path)  # Remove the file
 
 
 if __name__ == '__main__':
-    # del_file_before_executing("outputIndia.csv")
+    remove_csv_files()
     parameters = validate_yaml()
     browser = init_browser()
 
@@ -137,3 +143,6 @@ if __name__ == '__main__':
     bot.login()
     bot.security_check()
     bot.start_applying()
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print(
+        "..........................................Please Check your CSV files..........................................")

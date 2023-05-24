@@ -35,6 +35,7 @@ class LinkedinEasyApply:
         self.checkboxes = parameters.get('checkboxes', [])
         self.university_gpa = parameters['universityGpa']
         self.salary_minimum = parameters['salaryMinimum']
+        self.notice_period = parameters['NoticePeriod']
         self.languages = parameters.get('languages', [])
         self.experience = parameters.get('experience', [])
         self.personal_info = parameters.get('personalInfo', [])
@@ -75,6 +76,8 @@ class LinkedinEasyApply:
             print(position, location)
             location_url = "&location=" + location
             job_page_number = -1
+            total_pages = 0
+            flag = True
 
             print("Starting the search for " +
                   position + " in " + location + ".")
@@ -83,13 +86,21 @@ class LinkedinEasyApply:
                 while True:
                     page_sleep += 1
                     job_page_number += 1
-                    if job_page_number >= 40:
-                        break
                     print("Going to job page " + str(job_page_number + 1))
                     self.next_job_page(position, location_url, job_page_number)
+
                     time.sleep(random.uniform(1.5, 3.5))
-                    print("Starting the application process for this page...")
+
+                    if flag is True:
+                        total_pages = self.getting_total_pages()
+                        print("Total Job Pages " + str(total_pages))
+                        flag = False
+
+                    if total_pages <= job_page_number:
+                        break
+
                     self.apply_jobs(location)
+                    print("Starting the application process for this page...")
                     print("Applying to jobs on this page has been completed!")
 
                     # time_left = minimum_page_time - time.time()
@@ -104,7 +115,7 @@ class LinkedinEasyApply:
                     #     page_sleep += 1
             except Exception as ex:
                 # print(ex)
-                self.exceptionHandler(ex)
+                self.exception_handler(ex)
                 pass
 
                 # time_left = minimum_page_time - time.time()
@@ -228,12 +239,12 @@ class LinkedinEasyApply:
                     except Exception as ex:
                         print(
                             "Could not write the job to the file! No special characters in the job title/company is allowed!")
-                        self.exceptionHandler(ex)
+                        self.exception_handler(ex)
 
                 except Exception as ex:
                     print("Could not apply to the job!")
                     # traceback.print_exc()
-                    self.exceptionHandler(ex)
+                    self.exception_handler(ex)
                     pass
             else:
                 print("Job contains blacklisted keyword or company or poster name!")
@@ -277,7 +288,7 @@ class LinkedinEasyApply:
                 next_button.click()
                 time.sleep(random.uniform(3.0, 5.0))
 
-                if 'please enter a valid answer' in self.browser.page_source.lower() or 'file is required' in self.browser.page_source.lower():
+                if 'please enter a valid answer' in self.browser.page_source.lower() or 'file is required' in self.browser.page_source.lower() or 'larger than 0.0' in self.browser.page_source.lower():
                     raise Exception(
                         "Failed answering required questions or uploading required files.")
             except:
@@ -431,7 +442,6 @@ class LinkedinEasyApply:
                         By.CLASS_NAME, 'jobs-easy-apply-form-element')
                     question_text = question.find_element(
                         By.TAG_NAME, 'label').text.lower()
-
                     txt_field_visible = False
                     try:
                         txt_field = question.find_element(By.TAG_NAME, 'input')
@@ -483,11 +493,10 @@ class LinkedinEasyApply:
                         to_enter = self.personal_info['Linkedin']
                     elif 'website' in question_text or 'github' in question_text or 'portfolio' in question_text:
                         to_enter = self.personal_info['Website']
-                    elif 'salary' in question_text:
-                        if text_field_type == 'numeric':
-                            to_enter = self.salary_minimum
-                        else:
-                            to_enter = "$" + self.salary_minimum + "+"
+                    elif 'salary' in question_text.lower() or 'ctc' in question_text.lower():
+                        to_enter = self.salary_minimum
+                    elif 'period' in question_text.lower():
+                        to_enter = self.notice_period
                     else:
                         if text_field_type == 'numeric':
                             to_enter = 0
@@ -790,7 +799,7 @@ class LinkedinEasyApply:
                     except Exception as e:
                         print("Country code " + self.personal_info[
                             'Phone Country Code'] + " not found! Make sure it is exact.")
-                        self.exceptionHandler(e)
+                        self.exception_handler(e)
                         # print(e)
                     try:
                         phone_number_field = el.find_element(By.XPATH,
@@ -799,7 +808,7 @@ class LinkedinEasyApply:
                             phone_number_field, self.personal_info['Mobile Phone Number'])
                     except Exception as e:
                         print("Could not input phone number:")
-                        self.exceptionHandler(e)
+                        self.exception_handler(e)
                         # print(e)
 
     def fill_up(self):
@@ -852,7 +861,8 @@ class LinkedinEasyApply:
                 writer.writerow(to_write)
         except:
             print(
-                "Could not write the unprepared question to the file! No special characters in the question is allowed: ")
+                "Could not write the unprepared question to the file! No special characters in the question is "
+                "allowed: ")
             print(question_text)
 
     def scroll_slow(self, scrollable_element, start=0, end=3600, step=100, reverse=False):
@@ -965,7 +975,13 @@ class LinkedinEasyApply:
 
         self.avoid_lock()
 
-    def exceptionHandler(self, ex):
+    def getting_total_pages(self):
+        total_job_pages = self.browser.find_elements(By.CLASS_NAME, "artdeco-pagination__indicator")
+        if total_job_pages[-1].text == "..." or total_job_pages[-1].text is None:
+            return 0
+        return int(total_job_pages[-1].text)
 
+    @staticmethod
+    def exception_handler(ex):
         with open("exceptionHandler.log", 'w') as f:
             f.write(str(ex) + "\n")

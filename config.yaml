@@ -151,11 +151,14 @@ checkboxes:
   # Are you willing to undergo a background check, in accordance with local law/regulations?
   backgroundCheck: True
 
+# ------------ Additional parameters: Notice Period ---------------
+NoticePeriod: 30
+
 # ------------ Additional parameters: universityGpa ---------------
 universityGpa: 10
 
 # ------------ Additional parameters: salaryMinimum ---------------
-salaryMinimum: 0
+salaryMinimum: 69420
 
 # ------------ Additional parameters: languages ---------------
 languages:

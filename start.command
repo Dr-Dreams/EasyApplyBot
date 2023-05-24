@@ -11,7 +11,7 @@ fi
 
 # Update pip
 
-pip install --upgrade pip >/dev/null 2>&1
+python3 -m pip install --upgrade pip >/dev/null 2>&1
 
 # Check if virtual environment exists
 
