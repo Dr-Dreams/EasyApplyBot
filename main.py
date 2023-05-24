@@ -123,7 +123,7 @@ def validate_yaml():
 
 
 def remove_csv_files():
-    current_dir = os.getcwd()  # Get the current directory
+    current_dir = os.getcwd()  #Get the current directory
 
     # Iterate over all files in the current directory
     for file in os.listdir(current_dir):
