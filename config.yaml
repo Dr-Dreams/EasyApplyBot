@@ -1,6 +1,12 @@
 email: email@gmail.com
 password: password
 
+# Select your browser type , select one option
+Browser:
+  chrome: True
+  firefox: False
+  edge: False
+
 disableAntiLock: False
 
 remote: True

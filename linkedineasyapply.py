@@ -215,7 +215,7 @@ class LinkedinEasyApply:
                     time.sleep(random.uniform(3, 5))
 
                     try:
-                        done_applying = self.apply_to_job()
+                        done_applying = self.apply_to_job
                         if done_applying:
                             print("Done applying to the job!")
                         else:
@@ -250,6 +250,7 @@ class LinkedinEasyApply:
                 print("Job contains blacklisted keyword or company or poster name!")
             self.seen_jobs += link
 
+    @property
     def apply_to_job(self):
         easy_apply_button = None
 
@@ -288,7 +289,10 @@ class LinkedinEasyApply:
                 next_button.click()
                 time.sleep(random.uniform(3.0, 5.0))
 
-                if 'please enter a valid answer' in self.browser.page_source.lower() or 'file is required' in self.browser.page_source.lower() or 'larger than 0.0' in self.browser.page_source.lower():
+                if 'whole' in self.browser.page_source.lower() \
+                        or 'please enter a valid answer' in self.browser.page_source.lower() \
+                        or 'file is required' in self.browser.page_source.lower() \
+                        or 'larger than 0.0' in self.browser.page_source.lower():
                     raise Exception(
                         "Failed answering required questions or uploading required files.")
             except:

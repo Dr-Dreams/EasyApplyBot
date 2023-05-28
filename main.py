@@ -3,36 +3,69 @@ import os
 import pyautogui
 import yaml
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.edge.options import Options as EdgeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from validate_email import validate_email
 from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 from linkedineasyapply import LinkedinEasyApply
 
 
-def init_browser():
-    browser_options = Options()
-    options = ['--disable-blink-features', '--no-sandbox', '--start-maximized', '--disable-extensions',
-               '--ignore-certificate-errors', '--disable-blink-features=AutomationControlled',
-               '--remote-debugging-port=9222']
+def init_browser(browser_name):
+    driver = None
 
-    for option in options:
-        browser_options.add_argument(option)
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=browser_options)
-    driver.get("https://www.google.com")
-    screen_width, screen_height = pyautogui.size()
-    screen_width = screen_width / 4
-    screen_height = 1
+    if browser_name.lower() == 'chrome':
+        options = ChromeOptions()
+        options.add_argument('--disable-blink-features')
+        options.add_argument('--no-sandbox')
+        # options.add_argument('--start-maximized')
+        options.add_argument('--disable-extensions')
+        options.add_argument('--ignore-certificate-errors')
+        options.add_argument('--disable-blink-features=AutomationControlled')
+        options.add_argument('--remote-debugging-port=9222')
+        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
 
-    driver.set_window_position(screen_width, screen_height)
-    # driver.set_window_position(0, 0)
-    # driver.maximize_window()
+    elif browser_name.lower() == 'firefox':
+        options = FirefoxOptions()
+        options.add_argument('--disable-blink-features')
+        options.add_argument('--no-remote')
+        options.add_argument('--disable-extensions')
+        options.set_preference("browser.tabs.remote.autostart", False)
+        options.set_preference("browser.tabs.remote.autostart.1", False)
+        options.set_preference("browser.tabs.remote.autostart.2", False)
+        options.add_argument('--remote-debugging-port=9222')
+        options.set_preference("devtools.jsonview.enabled", True)
+        profile = webdriver.FirefoxProfile()
+        profile.accept_untrusted_certs = True
+        driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options=options,
+                                   firefox_profile=profile)
+
+    elif browser_name.lower() == 'edge':
+        options = EdgeOptions()
+        options.add_argument('--disable-blink-features')
+        options.add_argument('--disable-extensions')
+        options.add_argument('--remote-debugging-port=9222')
+        driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()), options=options,
+                                capabilities={"acceptInsecureCerts": True})
+
+    if driver:
+        driver.get("https://www.google.com")
+        screen_width, screen_height = pyautogui.size()
+        screen_width = screen_width / 4
+        screen_height = 1
+        driver.set_window_position(screen_width, screen_height)
+        # driver.set_window_position(0, 0)
+        # driver.maximize_window()
+
     return driver
 
 
 def validate_yaml():
-    with open("config.yaml", 'r') as stream:
+    with open("config copy.yaml", 'r') as stream:
         try:
             parameters = yaml.safe_load(stream)
         except yaml.YAMLError as exc:
@@ -123,7 +156,7 @@ def validate_yaml():
 
 
 def remove_csv_files():
-    current_dir = os.getcwd()  #Get the current directory
+    current_dir = os.getcwd()  # Get the current directory
 
     # Iterate over all files in the current directory
     for file in os.listdir(current_dir):
@@ -135,10 +168,29 @@ def remove_csv_files():
 
 
 if __name__ == '__main__':
-    remove_csv_files()
-    parameters = validate_yaml()
-    browser = init_browser()
 
+    # removing all previous csv files
+    remove_csv_files()
+
+    # validating yaml file
+    parameters = validate_yaml()
+
+    # checking browser types
+    browser_type = ""
+    browser_level = parameters.get('Browser', [])
+
+    if browser_level['chrome']:
+        browser_type = 'chrome'
+    elif browser_level['firefox']:
+        browser_type = 'firefox'
+    elif browser_level['edge']:
+        browser_type = 'edge'
+    else:
+        print("Please Select your browser type")
+        exit()
+
+    # init browser
+    browser = init_browser(browser_type)
     bot = LinkedinEasyApply(parameters, browser)
     bot.login()
     bot.security_check()

@@ -57,6 +57,10 @@ Next, you need to fill out the config.yaml file. Most of this is self-explanator
 email: email@gmail.com
 password: password
 
+Browser:
+  chrome: True
+  firefox: False
+  edge: False
 disableAntiLock: False
 
 remote: True
@@ -272,13 +276,6 @@ eeo:
   clearance: No
 ```
 
-## Execute
-
-To run the bot, run the following in the command line:
-
-```
-python3 main.py
-```
 
 ## Config.yaml Explanations
 
@@ -287,6 +284,14 @@ Just fill in your email and password for linkedin.
 ```yaml
 email: email@domain.com
 password: yourpassword
+```
+Select your browser type
+
+```yaml
+Browser:
+  chrome: True
+  firefox: False
+  edge: False
 ```
 
 This prevents your computer from going to sleep so the bot can keep running when you are not using it. Set this to True if you want this disabled.
