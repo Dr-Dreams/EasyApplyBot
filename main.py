@@ -65,7 +65,7 @@ def init_browser(browser_name):
 
 
 def validate_yaml():
-    with open("config copy.yaml", 'r') as stream:
+    with open("config.yaml", 'r') as stream:
         try:
             parameters = yaml.safe_load(stream)
         except yaml.YAMLError as exc:
