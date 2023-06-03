@@ -9,7 +9,7 @@ Browser:
 
 disableAntiLock: False
 
-remote: True
+remote: False
 
 experienceLevel:
   internship: False
@@ -31,12 +31,12 @@ jobTypes:
 Industry:
   Human Resources Services: False
   Staffing and Recruiting: False
-  Technology, Information and Internet: True
-  Software Development: True
+  Technology, Information and Internet: False
+  Software Development: False
   Computer Hardware Manufacturing: False
   Banking: False
   Insurance: False
-  Computer and Network Security: True
+  Computer and Network Security: False
   Retail: False
   Investment Management: False
   Financial Services: False
@@ -46,16 +46,16 @@ Industry:
   Telecommunications: False
 
 Job_function:
-  Research: True
+  Research: False
   Quality Assurance: False
   Sales: False
-  Consulting: True
-  Engineering: True
-  Information Technology: True
+  Consulting: False
+  Engineering: False
+  Information Technology: False
   Business Development: False
   Management: False
   Art/Creative: False
-  Other: True
+  Other: False
   Design: False
   Project Management: False
 
@@ -210,13 +210,13 @@ experience:
   #python: 0
   #selenium: 0
   # default to put for any industry/skill that you did not list
-  default: 0
+  default: 2
 
 # ------------ Additional parameters: personal info ---------------
 personalInfo:
   First Name: John
   Last Name: Doe
-  Phone Country Code: US (+1) # See linkedin for your country code, must be exact according to the international platform, i.e. Italy (+39) not Italia (+39)
+  Phone Country Code: India (+91) # See linkedin for your country code, must be exact according to the international platform, i.e. Italy (+39) not Italia (+39)
   Mobile Phone Number: 123434343
   Street address: address
   City: City name # Include the state/province as well!
