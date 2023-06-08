@@ -99,8 +99,8 @@ class LinkedinEasyApply:
                     if total_pages <= job_page_number:
                         break
 
-                    self.apply_jobs(location)
                     print("Starting the application process for this page...")
+                    self.apply_jobs(location)
                     print("Applying to jobs on this page has been completed!")
 
                     # time_left = minimum_page_time - time.time()
@@ -210,6 +210,8 @@ class LinkedinEasyApply:
                 try:
                     job_el = job_tile.find_element(
                         By.CLASS_NAME, 'job-card-list__title')
+                    # job_el = job_tile.find_element_by_css_selector("a.job-card-list__title")
+                    print(job_el)
                     job_el.click()
 
                     time.sleep(random.uniform(3, 5))
@@ -277,9 +279,11 @@ class LinkedinEasyApply:
         while submit_application_text not in button_text.lower():
             try:
                 self.fill_up()
+                time.sleep(random.uniform(1.5, 2.5))
                 next_button = self.browser.find_element(
                     By.CLASS_NAME, "artdeco-button--primary")
                 button_text = next_button.text.lower()
+                # print(button_text)
                 if submit_application_text in button_text:
                     try:
                         self.unfollow()
@@ -289,13 +293,12 @@ class LinkedinEasyApply:
                 next_button.click()
                 time.sleep(random.uniform(3.0, 5.0))
 
-                if 'whole' in self.browser.page_source.lower() \
-                        or 'please enter a valid answer' in self.browser.page_source.lower() \
-                        or 'file is required' in self.browser.page_source.lower() \
-                        or 'larger than 0.0' in self.browser.page_source.lower():
-                    raise Exception(
-                        "Failed answering required questions or uploading required files.")
-            except:
+                search_value = ['file is required', 'Enter a decimal number larger than 0.0', 'whole', 'larger',
+                                'greater']
+                if any(value in self.browser.page_source.lower() for value in search_value):
+                    raise Exception("Failed answering required questions or uploading required files.")
+            except Exception as ex:
+                print(ex)
                 # traceback.print_exc()
                 self.browser.find_element(
                     By.CLASS_NAME, 'artdeco-modal__dismiss').click()
