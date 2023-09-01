@@ -5,7 +5,7 @@ import traceback
 from datetime import date
 from itertools import product
 
-import pyautogui
+# import pyautogui
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -98,7 +98,8 @@ class LinkedinEasyApply:
                             print("Total Job Pages " + str(total_pages))
                             flag = False
 
-                        if total_pages <= job_page_number:
+                        if total_pages < job_page_number:
+                            print("breaking because of total pages is less than the job_page_number")
                             break
 
                         self.apply_jobs(location)
@@ -115,8 +116,8 @@ class LinkedinEasyApply:
                         #     print("Sleeping for " + str(sleep_time / 60) + " minutes.")
                         #     time.sleep(sleep_time)
                         #     page_sleep += 1
-                except:
-                    # print(ex)
+                except Exception as ex:
+                    print(ex)
                     self.exception_save(traceback.format_exc())
                     pass
 
@@ -204,6 +205,7 @@ class LinkedinEasyApply:
             job_title_parsed = job_title.lower().split(' ')
 
             for word in self.title_blacklist:
+                # print("inside the title_blacklist for loop")
                 if word.lower() in job_title_parsed:
                     contains_blacklisted_keywords = True
                     break
@@ -888,11 +890,11 @@ class LinkedinEasyApply:
         if self.disable_lock:
             return
 
-        pyautogui.keyDown('ctrl')
-        pyautogui.press('esc')
-        pyautogui.keyUp('ctrl')
-        time.sleep(1.0)
-        pyautogui.press('esc')
+        # pyautogui.keyDown('ctrl')
+        # pyautogui.press('esc')
+        # pyautogui.keyUp('ctrl')
+        # time.sleep(1.0)
+        # pyautogui.press('esc')
 
     def get_base_search_url(self, parameters):
         remote_url = ""
@@ -911,7 +913,7 @@ class LinkedinEasyApply:
         distance_url = "?distance=" + str(parameters['distance'])
 
         job_types_url = "f_JT="
-        job_types = parameters.get('experienceLevel', [])
+        job_types = parameters.get('jobTypes', [])
         for key in job_types:
             if job_types[key]:
                 job_types_url += "%2C" + key[0].upper()
@@ -985,13 +987,40 @@ class LinkedinEasyApply:
         self.avoid_lock()
 
     def getting_total_pages(self):
-        total_job_pages = self.browser.find_elements(By.CLASS_NAME, "artdeco-pagination__indicator")
-        if total_job_pages[-1].text == "..." or total_job_pages[-1].text is None:
-            return 0
-        return int(total_job_pages[-1].text)
 
-    def exception_save(ex):
+        hidden_li_text = self.browser.execute_script("return document.querySelector('.artdeco-pagination__pages--number li:last-child').textContent;")
+        # print("Text of hidden <li> tag:", hidden_li_text)
+        # ul_element = self.browser.find_element(By.CLASS_NAME, "artdeco-pagination__pages")
+        # li_elements = ul_element.find_elements(By.CLASS_NAME, "artdeco-pagination__indicator")
+        # page_numbers = []
+        #
+        # for li_element in li_elements:
+        #     try:
+        #         span = li_element.find_element(By.TAG_NAME, "span")
+        #         number = span.text
+        #         if number != "…" or number != " ":
+        #             page_numbers.append(int(number))
+        #     except:
+        #         pass
+        # print(page_numbers)
+        # print(li_elements[-2].text)
+        # for li_elements in ul_element.find_element(By.TAG_NAME, "li"):
+        #
+        #     span_element = li_elements.find_element(By.TAG_NAME, "span")
+        #     total_job_Pages = span_element.text
+        #     print(total_job_Pages)
+
+
+        # if total_job_pages[-1].text == "..." or total_job_pages[-1].text is None:
+        #     return 0
+        # return page_numbers[-1]
+        return int(hidden_li_text)
+
+
+    def exception_save(ex, exc):
         with open("exception.log", 'a') as f:
-            f.write(ex + "\n")
+            f.write(str(ex) + "\n")
             f.write("\n---\n")
             f.close()
+
+

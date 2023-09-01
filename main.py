@@ -22,7 +22,7 @@ def init_browser(browser_name):
         options = ChromeOptions()
         options.add_argument('--disable-blink-features')
         options.add_argument('--no-sandbox')
-        # options.add_argument('--start-maximized')
+        options.add_argument('--start-maximized')
         options.add_argument('--disable-extensions')
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--disable-blink-features=AutomationControlled')
@@ -110,7 +110,7 @@ def validate_yaml():
             at_least_one_date = True
     assert at_least_one_date
 
-    approved_distances = {0, 5, 10, 25, 50, 100}
+    approved_distances = {0, 5, 10, 25, 50, 100, 1000}
     assert parameters['distance'] in approved_distances
 
     assert len(parameters['positions']) > 0
